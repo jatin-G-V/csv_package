@@ -1,0 +1,17 @@
+# Virtual environment
+venv/
+
+# Build files
+dist/
+build/
+
+# Package metadata
+*.egg-info/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Local test data
+test.csv
+
