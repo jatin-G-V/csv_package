@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "csvstat"
+version = "0.1.1"
+description = "A Python package for analyzing CSV files"
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [
+    {name = "Jatin Garg"}
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+

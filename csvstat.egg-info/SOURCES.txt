@@ -1,0 +1,8 @@
+README.md
+pyproject.toml
+csvstat/__init__.py
+csvstat/core.py
+csvstat.egg-info/PKG-INFO
+csvstat.egg-info/SOURCES.txt
+csvstat.egg-info/dependency_links.txt
+csvstat.egg-info/top_level.txt
