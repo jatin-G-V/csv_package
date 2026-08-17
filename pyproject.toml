@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "csvstat"
 version = "0.1.1"
 description = "A Python package for analyzing CSV files"
-readme = "README.md"
+readme = "package.md"
 requires-python = ">=3.8"
 authors = [
     {name = "Jatin Garg"}
