@@ -1,10 +1,10 @@
-# csvstat
+# csvstat-jatin
 
 A simple Python package for analyzing CSV files and generating basic statistics.
 
 ## Overview
 
-`csvstat` provides reusable functions for analyzing CSV files without requiring external dependencies.
+`csvstat-jatin` provides reusable functions for analyzing CSV files without requiring external runtime dependencies.
 
 The package supports:
 
@@ -34,32 +34,6 @@ csvstat/
 └── pyproject.toml
 ```
 
-### `core.py`
-
-Contains the main CSV analysis functions.
-
-### `__init__.py`
-
-Exports the functions from `core.py`, allowing them to be imported directly from the package.
-
-Example:
-
-```python
-from csvstat import numeric_stats
-```
-
-### `test_core.py`
-
-Contains unit tests for the functions implemented in `core.py`.
-
-### `pyproject.toml`
-
-Contains the package metadata and build configuration.
-
-### `.gitignore`
-
-Excludes virtual environments, build files, cache files, package metadata, and local test files from the Git repository.
-
 ## Available Functions
 
 | Function                                         | Description                                |
@@ -80,115 +54,40 @@ Excludes virtual environments, build files, cache files, package metadata, and l
 
 ## Package Creation
 
-### 1. Create the Package Structure
+The project follows a standard Python package structure with reusable CSV analysis functions separated from the test suite.
 
-The project was organized using a standard Python package structure.
-
-```text
-csvstat/
-├── csvstat/
-│   ├── __init__.py
-│   └── core.py
-├── tests/
-│   ├── test.csv
-│   └── test_core.py
-├── README.md
-├── requirements.txt
-└── pyproject.toml
-```
-
-### 2. Add Functions to `core.py`
-
-The CSV analysis functions were placed inside `core.py`.
-
-The reusable functions are kept separate from the command-line interface code so that they can be imported and used by other Python programs.
-
-### 3. Configure `__init__.py`
-
-The functions from `core.py` were exported through `__init__.py`.
-
-```python
-from .core import (
-    number_Of_Rows,
-    number_Of_Columns,
-    value_type,
-    columns,
-    column_values,
-    numeric_column_values,
-    column_type,
-    table_info,
-    numeric_stats,
-    numeric_columns_stats,
-    most_frequent_values,
-    frequent_values_all_columns,
-    missing_values
-)
-```
-
-This allows direct imports such as:
+The functions are implemented in `core.py` and exported through `__init__.py`, allowing direct imports such as:
 
 ```python
 from csvstat import numeric_stats
 ```
 
-### 4. Configure `pyproject.toml`
+## Development Setup
 
-The package metadata and build configuration were defined in `pyproject.toml`.
-
-```toml
-[build-system]
-requires = ["setuptools>=61"]
-build-backend = "setuptools.build_meta"
-
-[project]
-name = "csvstat"
-version = "0.1.1"
-description = "A Python package for analyzing CSV files"
-readme = "README.md"
-requires-python = ">=3.8"
-authors = [
-    {name = "Jatin Garg"}
-]
-
-[tool.setuptools.packages.find]
-where = ["."]
-```
-
-### 5. Create a Virtual Environment
-
-A virtual environment was created for package development.
+Create and activate a virtual environment:
 
 ```bash
 python3 -m venv venv
-```
-
-Activate it:
-
-```bash
 source venv/bin/activate
 ```
 
-### 6. Install the Package for Development
-
-The package was installed in editable mode:
+Install the package in editable mode:
 
 ```bash
 pip install -e .
 ```
 
-### 7. Unit Testing
+## Unit Testing
 
-Unit tests were added using `pytest` to verify the functionality of the CSV analysis functions.
+The package uses `pytest` for unit testing.
 
-The tests are located in:
+Run the complete test suite using:
 
-```text
-tests/
-├── test.csv
-└── test_core.py
+```bash
+pytest
 ```
 
-`test_core.py` contains test cases covering:
+The test suite contains 15 test cases covering:
 
 * Row counting
 * Column counting
@@ -202,91 +101,65 @@ tests/
 * Missing value analysis
 * Invalid column handling
 
-`pytest` was installed using:
-
-```bash
-pip install pytest
-```
-
-The complete test suite can be executed using:
-
-```bash
-pytest
-```
-
-The test suite currently contains **15 test cases**.
-
 All 15 tests passed successfully:
 
 ```text
 15 passed
 ```
-<img width="1360" height="231" alt="image" src="https://github.com/user-attachments/assets/1eea1f55-beca-4f3e-8106-a6731e50a592" />
 
-### 8. Build the Package
+## Building the Package
 
-The Python build tool was installed:
+Install the build tool:
 
 ```bash
 pip install build
 ```
 
-The package was then built:
+Build the package:
 
 ```bash
 python -m build
 ```
 
-This generated:
+The build generates source and wheel distributions inside the `dist/` directory.
 
-```text
-dist/
-├── csvstat-0.1.1-py3-none-any.whl
-└── csvstat-0.1.1.tar.gz
-```
+## Package Validation
 
-### 9. Validate the Package
-
-Twine was installed for package distribution:
+Twine is used to validate the generated distributions:
 
 ```bash
 python -m pip install twine
-```
-
-The generated package was checked using:
-
-```bash
 python -m twine check dist/*
 ```
 
-### 10. Publish to TestPyPI
+Both generated distributions passed validation successfully.
 
-The package was published to TestPyPI using Twine.
+## Publishing to PyPI
+
+The package was published to PyPI using Twine and a PyPI API token:
 
 ```bash
-python -m twine upload --repository testpypi dist/*
+python -m twine upload dist/*
 ```
 
-For authentication:
+PyPI API-token authentication uses:
 
 ```text
 Username: __token__
-Password: <TestPyPI API token>
+Password: <PyPI API token>
 ```
 
-The package was successfully published to TestPyPI for distribution and testing.
+The original upload issue was caused by using a package name that was already registered on PyPI. The package was renamed to a unique name and the issue was resolved.
 
-## Installing from TestPyPI
+## Installation
 
-Because the package is currently published on **TestPyPI**, it can be installed using:
+After publication, the package can be installed directly from PyPI using:
 
 ```bash
-python -m pip install --index-url https://test.pypi.org/simple/ csvstat==0.1.1
+python -m pip install csvstat-jatin
 ```
 
 ## Usage
-
-After installation:
 
 ```python
 from csvstat import numeric_stats
@@ -308,54 +181,6 @@ from csvstat import frequent_values_all_columns
 * Python 3.8+
 * No external runtime dependencies
 * `pytest` is used for unit testing
-
-The testing dependency is listed in `requirements.txt`:
-
-```text
-pytest==9.1.1
-```
-
-## PyPI Publishing Issue
-
-The package was successfully built and validated using Twine.
-
-The package validation completed successfully:
-
-```text
-Checking dist/csvstat-0.1.1-py3-none-any.whl: PASSED
-Checking dist/csvstat-0.1.1.tar.gz: PASSED
-```
-
-An attempt was then made to upload the package to the production PyPI repository using:
-
-```bash
-python -m twine upload dist/*
-```
-
-The upload was rejected by PyPI with an HTTP `403 Forbidden` error:
-
-```text
-WARNING  This environment is not supported for trusted publishing
-
-ERROR    HTTPError: 403 Forbidden from https://upload.pypi.org/legacy/
-         Forbidden
-```
-
-The package build and Twine validation were successful, but the production PyPI upload could not be completed because the PyPI server rejected the upload request.
-
-The package remains available on TestPyPI for testing and distribution.
-
-Further investigation of the PyPI account, authentication, API token, and publishing permissions is required before publishing to production PyPI.
-
-
-<img width="923" height="348" alt="image" src="https://github.com/user-attachments/assets/c7cb6fdc-a53e-4e0e-882f-5206b6a67661" />
-
-
-## Current Distribution
-
-The package is currently published on **TestPyPI**.
-
-Production PyPI publishing is not included in the current setup due to the upload issue encountered during the publishing attempt.
 
 ## Author
 
