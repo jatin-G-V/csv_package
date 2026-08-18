@@ -24,8 +24,13 @@ csvstat/
 │   ├── __init__.py
 │   └── core.py
 │
+├── tests/
+│   ├── test.csv
+│   └── test_core.py
+│
 ├── .gitignore
 ├── README.md
+├── requirements.txt
 └── pyproject.toml
 ```
 
@@ -42,6 +47,10 @@ Example:
 ```python
 from csvstat import numeric_stats
 ```
+
+### `test_core.py`
+
+Contains unit tests for the functions implemented in `core.py`.
 
 ### `pyproject.toml`
 
@@ -80,7 +89,11 @@ csvstat/
 ├── csvstat/
 │   ├── __init__.py
 │   └── core.py
+├── tests/
+│   ├── test.csv
+│   └── test_core.py
 ├── README.md
+├── requirements.txt
 └── pyproject.toml
 ```
 
@@ -163,7 +176,54 @@ The package was installed in editable mode:
 pip install -e .
 ```
 
-### 7. Build the Package
+### 7. Unit Testing
+
+Unit tests were added using `pytest` to verify the functionality of the CSV analysis functions.
+
+The tests are located in:
+
+```text
+tests/
+├── test.csv
+└── test_core.py
+```
+
+`test_core.py` contains test cases covering:
+
+* Row counting
+* Column counting
+* Value type detection
+* Column extraction
+* Numeric value extraction
+* Column type detection
+* Table information
+* Numeric statistics
+* Frequent values
+* Missing value analysis
+* Invalid column handling
+
+`pytest` was installed using:
+
+```bash
+pip install pytest
+```
+
+The complete test suite can be executed using:
+
+```bash
+pytest
+```
+
+The test suite currently contains **15 test cases**.
+
+All 15 tests passed successfully:
+
+```text
+15 passed
+```
+<img width="1360" height="231" alt="image" src="https://github.com/user-attachments/assets/1eea1f55-beca-4f3e-8106-a6731e50a592" />
+
+### 8. Build the Package
 
 The Python build tool was installed:
 
@@ -185,7 +245,7 @@ dist/
 └── csvstat-0.1.1.tar.gz
 ```
 
-### 8. Validate the Package
+### 9. Validate the Package
 
 Twine was installed for package distribution:
 
@@ -199,7 +259,7 @@ The generated package was checked using:
 python -m twine check dist/*
 ```
 
-### 9. Publish to TestPyPI
+### 10. Publish to TestPyPI
 
 The package was published to TestPyPI using Twine.
 
@@ -214,7 +274,7 @@ Username: __token__
 Password: <TestPyPI API token>
 ```
 
-The package is available on TestPyPI for distribution and further testing.
+The package was successfully published to TestPyPI for distribution and testing.
 
 ## Installing from TestPyPI
 
@@ -246,13 +306,56 @@ from csvstat import frequent_values_all_columns
 ## Requirements
 
 * Python 3.8+
-* No external dependencies
+* No external runtime dependencies
+* `pytest` is used for unit testing
+
+The testing dependency is listed in `requirements.txt`:
+
+```text
+pytest==9.1.1
+```
+
+## PyPI Publishing Issue
+
+The package was successfully built and validated using Twine.
+
+The package validation completed successfully:
+
+```text
+Checking dist/csvstat-0.1.1-py3-none-any.whl: PASSED
+Checking dist/csvstat-0.1.1.tar.gz: PASSED
+```
+
+An attempt was then made to upload the package to the production PyPI repository using:
+
+```bash
+python -m twine upload dist/*
+```
+
+The upload was rejected by PyPI with an HTTP `403 Forbidden` error:
+
+```text
+WARNING  This environment is not supported for trusted publishing
+
+ERROR    HTTPError: 403 Forbidden from https://upload.pypi.org/legacy/
+         Forbidden
+```
+
+The package build and Twine validation were successful, but the production PyPI upload could not be completed because the PyPI server rejected the upload request.
+
+The package remains available on TestPyPI for testing and distribution.
+
+Further investigation of the PyPI account, authentication, API token, and publishing permissions is required before publishing to production PyPI.
+
+
+<img width="923" height="348" alt="image" src="https://github.com/user-attachments/assets/c7cb6fdc-a53e-4e0e-882f-5206b6a67661" />
+
 
 ## Current Distribution
 
 The package is currently published on **TestPyPI**.
 
-Production PyPI publishing is not included in the current setup.
+Production PyPI publishing is not included in the current setup due to the upload issue encountered during the publishing attempt.
 
 ## Author
 
