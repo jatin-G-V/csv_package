@@ -7,7 +7,7 @@ A simple Python package for analyzing CSV files and generating basic statistics.
 Install the package using pip:
 
 ```bash
-pip install -i https://test.pypi.org/simple/ csvstat
+pip install -i https://pypi.org/simple/ csvstat-jg
 
 ```
 # Usage

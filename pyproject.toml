@@ -3,7 +3,7 @@ requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "csvstat"
+name = "csvstat-jg"
 version = "0.1.1"
 description = "A Python package for analyzing CSV files"
 readme = "package.md"
@@ -14,4 +14,6 @@ authors = [
 
 [tool.setuptools.packages.find]
 where = ["."]
+
+
 
